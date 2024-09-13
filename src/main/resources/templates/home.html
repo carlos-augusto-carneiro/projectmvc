@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Home</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand bg-primary d-flex justify-content-between mb-4" data-bs-theme="dark">
+        <div class="d-flex justify-content-between ms-4">
+            <a class="navbar-brand" href="/home">
+                <img th:src="@{/LogoWshihList.png}" width="143" height="110" alt="Logo">
+            </a>
+            <h1 class="display-3 mt-4 ms-0 text-white fw-bold"><em>WhishList</em></h1>
+        </div>
+        <div class="d-flex justify-content-between me-4">
+            <form th:action="@{/conta/atualizar}" method="get">
+                <button type="submit" class="btn btn-light fs-2 me-4">Conta</button>
+            </form>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-light fs-2">Sair</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container-xxl">
+        <div class="jumbotron jumbotron-fluid text-white rounded">
+            <div class="container bg-secondary rounded">
+                <h1 class="display-2">Sua lista de desejos</h1>
+                <h2>Seja bem-vindo(a) <span th:text="${user != null ? user.username : 'Usuário não encontrado'}">Nome do usuário</span></h2> 
+            </div>
+        </div>
+        <nav class="navbar navbar-expand bg-primary d-flex justify-content-between mb-4 rounded" data-bs-theme="dark">
+            <div class="navbar-nav ms-3">
+                <a class="nav-link active fs-5" aria-current="page" href="/home">Todos</a>
+                <a class="nav-link fs-5" href="#">Aguardando o envio</a>
+                <a class="nav-link fs-5" href="#">Comprados</a>
+                <a class="nav-link fs-5" href="#">Recebidos</a>
+            </div>
+            <div class="d-flex justify-content-between me-4">
+                <form th:action="@{/pedidos/formulario}" method="get">
+                    <button type="submit" class="btn btn-light fs-5">Novo pedido</button>
+                </form>
+            </div>
+        </nav>
+        <div th:if="${pedidos != null and !pedidos.empty}">
+            <div class="card mb-3" th:each="pedido : ${pedidos}">
+                <div class="card-header" th:text="${pedido.nomeProduto}">Nome do produto</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-7 mb-4">
+                            <div class="row">
+                                <div class="col-md-4">Preço: <span th:text="${pedido.valorNegociado}">3000</span></div>
+                                <div class="col-md-8">Data da entrega: <span th:text="${pedido.dataEntrega}">30/05/2024</span></div>
+                            </div>
+                            <div>Produto</div>
+                            <div>
+                                <input class="form-control" th:value="${pedido.urlProduto}" readonly/>
+                            </div> 
+                            <div>Descrição</div>
+                            <div>
+                                <textarea class="form-control" th:text="${pedido.descricao}" readonly>Descrição do produto</textarea>
+                            </div>
+                            <div>Status: <span th:text="${pedido.status}"></span></div>
+                            <div>
+                                Data do pedido: <span th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')}"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-5">
+                            <div>
+                                <img class="img-fluid" th:src="${pedido.urlImagem}" alt="Imagem do produto"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${pedidos == null or pedidos.empty}">
+            <p class="alert alert-info">Nenhum pedido encontrado.</p>
+        </div>
+    </div>
+</body>
+</html>
