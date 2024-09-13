@@ -11,6 +11,8 @@ Este é um projeto de aplicação web baseado em Spring Boot, utilizando o padr�
 - Spring Security
 - Thymeleaf
 - MySQL
+- Hibernate
+- Bootstrap
 - Maven
 
 ## Função do Projeto
