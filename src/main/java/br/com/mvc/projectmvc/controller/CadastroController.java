@@ -12,23 +12,25 @@ import br.com.mvc.projectmvc.dto.CadastroDto;
 import br.com.mvc.projectmvc.model.User;
 import br.com.mvc.projectmvc.repository.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("cadastro")
+@RequestMapping("/cadastro")
 public class CadastroController {
 
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/formulario")
-    public String formulario(CadastroDto cadastroDto){
-        return "Cadastro/formulario";
+    public String formulario(Model model) {
+        model.addAttribute("cadastroDto", new CadastroDto());
+        return "cadastro/formulario";  // Note o "c" minúsculo
     }
 
     @PostMapping("/novo")
-    public String novoUsuario(@Valid CadastroDto cadastroDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "Cadastro/formulario";
+    public String novoUsuario(@Valid CadastroDto cadastroDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "cadastro/formulario";  // Note o "c" minúsculo
         }
         User user = cadastroDto.toUser();
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));

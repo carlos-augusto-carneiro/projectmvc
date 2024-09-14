@@ -42,7 +42,7 @@
                 </form>
             </div>
         </nav>
-        <form th:action="@{/pedidos/novo}" th:object="${pedidoDto}" method="post" class="card p-4">
+        <form th:action="@{/pedido/novo}" th:object="${pedidoDto}" method="post" class="card p-4">
             <div class="mb-3">
                 <label for="nomeProduto" class="form-label">Produto</label>
                 <input th:field="*{nomeProduto}" th:errorclass="is-invalid" type="text" class="form-control" id="nomeProduto" placeholder="Nome do produto">

@@ -10,8 +10,8 @@ import ch.qos.logback.core.model.Model;
 @RequestMapping("/conta")
 public class ContaController {
 
-    @GetMapping("atualizar")
+    @GetMapping("/atualizar")
     public String atualizar(Model model){
-        return "Conta/Atualizar";
+        return "conta/atualizar";  // Note o "c" minúsculo e o nome do arquivo em minúsculo
     }
 }

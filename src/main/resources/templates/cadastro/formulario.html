@@ -7,26 +7,33 @@
     <title>Formulário de Cadastro</title>
 </head>
 <body>
-    <div class="container-xxl">
-        <div class="d-flex justify-content-between bg-primary text-white rounded">
-            <div class="container">
-                <h1 class="display-4">Cadastrar</h1>
-            </div>
+    <nav class="navbar navbar-expand bg-primary d-flex justify-content-between mb-4" data-bs-theme="dark">
+        <div class="d-flex justify-content-between ms-4">
+            <a class="navbar-brand" href="/home">
+                <img th:src="@{/LogoWshihList.png}" width="143" height="110" alt="Logo">
+            </a>
+            <h1 class="display-3 mt-4 ms-0 text-white fw-bold"><em>WhishList</em></h1>
         </div>
-    </div>
-    <div class="container-xxl">
-        <div class="card">
+    </nav>
+   
+    <div class="container d-flex justify-content-center">
+        <div class="card" style="width: 40%;"> 
+            <div class="d-flex justify-content-between bg-primary text-white rounded card-header">
+                <div class="container">
+                    <h1 class="display-4 fw-bold">Cadastrar</h1>
+                </div>
+            </div>
             <div class="card-body">
                 <form th:action="@{/cadastro/novo}" th:object="${cadastroDto}" method="post">
                     <div class="mb-3">
-                        <label class="form-label" for="username">Seu Nome</label>
+                        <label class="form-label mb-3 ms-1 fs-5" for="username">Seu Nome</label>
                         <input type="text" class="form-control" id="username" th:field="*{username}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="password">Senha</label>
+                        <label class="form-label mb-3 ms-1 fs-5" for="password">Senha</label>
                         <input type="password" class="form-control" id="password" th:field="*{password}">
                     </div>
-                    <label class="form-check-label">Informe sua role:</label>
+                    <label cclass="form-label mb-3 ms-1 fs-5">Informe sua role:</label>
                     <div class="mb-3">
                         <div class="form-check">
                             <input type="radio" class="form-check-input" id="role-admin" th:field="*{role}" value="ADMIN">

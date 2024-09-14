@@ -31,5 +31,10 @@ Este projeto serve como base para uma aplicação web utilizando a arquitetura M
 - [ ] Adicionar testes unitários e de integração
 - [X] Configurar logging para a aplicação
 - [ ] Documentar APIs
+- [ ] Implementar Token JWT/Auth02
+- [ ] Adicionar cache para melhorar o desempenho
+- [ ] Adicionar Threads para melhorar o desempenho
+- [ ] Adicionar Paginação
 - [ ] Implementar tratamento de exceções personalizado
+- [ ] Tela de editar pedido/conta.
 - [ ] Configurar perfis de ambiente (desenvolvimento, teste, produção)
